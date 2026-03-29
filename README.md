@@ -7,3 +7,39 @@ When a user asks a question, the system runs a semantic search over the index, p
 
 I wrote the ingestion, chunking, retrieval and answer modules as separate components and added some smoke tests so I can safely change embedding models or chunking parameters later. It’s not a full LLM fine-tune yet, but it demonstrates that I can put together a working RAG pipeline over real documents end-to-end
 
+1. Clone the repository
+git clone https://github.com/itsadi96/erc-rag-assistant.git
+cd erc-rag-assistant
+2. Create and activate a virtual environment (Windows PowerShell)
+python -m venv .venv
+.\.venv\Scripts\Activate.ps1
+If pip is missing inside the venv:
+python -m ensurepip --upgrade
+3. Install dependencies
+python -m pip install --upgrade pip
+python -m pip install -r requirements.txt
+4. Add your dataPlace documents inside:
+data/raw/
+Supported types:
+  • .txt
+  • .md
+  • .csv
+  • .pdf
+There is also a sample file:
+data/raw/sample_research.txt
+5. Build the FAISS index
+$env:PYTHONPATH="."
+python src/ingestion/build_index.py
+You should see logs like:
+  • Processed: data/raw/your_file.ext -> N chunks
+  • Saved index with N chunks.
+6. Run the Streamlit app
+$env:PYTHONPATH="."
+python -m streamlit run app/main.py
+Streamlit will print a local URL, for example:
+Local URL: http://localhost:8501
+Open that in your browser, ask a question about your documents, and the app will:
+  • retrieve relevant chunks via FAISS
+  • generate a grounded answer
+  • show sources and evidence snippetste a grounded answer
+  • show sources and evidence snippets
