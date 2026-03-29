@@ -1,0 +1,10 @@
+.venv/
+__pycache__/
+*.pyc
+vectorstore/
+.env
+.streamlit/
+data/raw/*.pdf
+data/raw/*.doc*
+data/raw/*.xlsx
+data/raw/*.csv
