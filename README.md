@@ -1,0 +1,5 @@
+ built a small RAG system called ERC RAG Assistant aimed at research-style datasets. The idea is that you can drop documents like PDFs, CSVs or text files into a folder, and the app will clean them, chunk them, embed them with sentence-transformers, and index them in a FAISS vector store.
+
+When a user asks a question, the system runs a semantic search over the index, pulls back the most relevant chunks and then generates a grounded answer that’s basically a structured summary of those chunks. The Streamlit UI shows three things: the answer, the list of source files, and expandable evidence cards with the actual retrieved snippets. That makes it easy to see where the answer came from and to debug retrieval quality.
+
+I wrote the ingestion, chunking, retrieval and answer modules as separate components and added some smoke tests so I can safely change embedding models or chunking parameters later. It’s not a full LLM fine-tune yet, but it demonstrates that I can put together a working RAG pipeline over real documents end-to-end
