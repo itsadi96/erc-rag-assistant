@@ -1,1 +1,1 @@
-European Research Council projects often contain structured metadata along with unstructured descriptions, abstracts, funding notes, and thematic summaries. A good RAG system should clean these sources, chunk them carefully, and retrieve the most relevant passages before generating answers.
+
